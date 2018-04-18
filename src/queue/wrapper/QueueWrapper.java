@@ -28,23 +28,29 @@ public abstract class QueueWrapper implements Queue {
 		this.queue = queue;
 	}
 	
+	@Override
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
 	
+	@Override
 	public boolean isFull() {
 		return queue.isFull();
 	}
 	
+	@Override
 	public int getSize() {
 		return queue.getSize();
 	}
 	
+	@Override
 	public int getCount() {
 		return queue.getCount();
 	}
 	
+	@Override
 	public abstract void insert(int elem);
 	
+	@Override
 	public abstract int retrieve();
 }

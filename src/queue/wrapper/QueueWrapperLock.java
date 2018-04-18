@@ -23,6 +23,7 @@ public class QueueWrapperLock extends QueueWrapper {
 		usedSpace = lock.newCondition();
 	}
 	
+	@Override
 	public void insert(int elem) {
 		// 1. We lock the object, so we are sure that only a thread per time can use the resource.
 		lock.lock();
@@ -50,6 +51,7 @@ public class QueueWrapperLock extends QueueWrapper {
 
 	}
 	
+	@Override
 	public int retrieve() {
 		// 0. We set the variable to return further.
 		int elem = -1;

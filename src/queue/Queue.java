@@ -4,8 +4,7 @@ package queue;
  * This interface abstracts the methods associated with a queue.
  * Its type is {@code int}, but with a little more work on it, we can make
  * it generic (aka Template in C++). 
- * <p>
- * A queue is an array-style abstract data type, with the possibility of
+ * <p> A queue is an array-style abstract data type, with the possibility of
  * scrolling the content forward or reverse, and with one or more iterators.
  * 
  * @author Cristiano Salerno

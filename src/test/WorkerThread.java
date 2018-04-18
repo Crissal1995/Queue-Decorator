@@ -1,5 +1,6 @@
 package test;
-import queue.Queue;
+
+import queue.*;
 
 public class WorkerThread extends Thread {
 	private Queue queue;
@@ -11,7 +12,6 @@ public class WorkerThread extends Thread {
 	}
 	
 	public void run() {
-		
 		if(isConsumer) {
 			try {
 				Thread.sleep( 1000 );
