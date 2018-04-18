@@ -30,14 +30,14 @@ public interface Queue {
 	/**
 	 * Return the size (not the elements' count) of the queue.
 	 * 
-	 * @return A number, indicating how many elements the queue can contain.
+	 * @return How many elements the queue can contain.
 	 */
 	public int getSize();
 	
 	/**
 	 * Return the elements' count of the queue.
 	 * 
-	 * @return A number, indicating how many elements are in the queue. 
+	 * @return How many elements are in the queue. 
 	 */
 	public int getCount();
 	
@@ -45,8 +45,8 @@ public interface Queue {
 	 * Insert an element of type int inside the queue, following
 	 * a rule choosen by a wrapper.
 	 * 
-	 * @param elem The element to insert into the queue, following the policy
-	 * of the object that implements the interface.
+	 * @param elem The element to insert into the queue.
+	 * Follows the object implementation policy.
 	 */
 	public void insert(int elem);
 	
@@ -54,8 +54,8 @@ public interface Queue {
 	 * Retrieve an element of type int from the queue, following
 	 * a rule choosen by a wrapper.
 	 * 
-	 * @return The object to retrieve from the queue, following the policy
-	 * of the object that implements the interface.
+	 * @return The object to retrieve from the queue. 
+	 * Follows the object implementation policy.
 	 */
 	public int retrieve();
 }

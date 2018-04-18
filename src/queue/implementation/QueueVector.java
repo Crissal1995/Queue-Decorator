@@ -11,7 +11,7 @@ import queue.Queue;
  * <p> For a single-thread application, however, there are no concurrency and
  * mutual exclusion to respect and preserve, so there isn't the need of any Wrapper.
  * <p><b>Implementation</b>
- * <p>This Queue is implemented with the use of a State Vector, an array
+ * <p>This Queue is implemented with the use of a state vector, an array
  * with the same size as the queue, but with type {@code State}, in order to
  * monitor the state of every queue slot.
  * 
@@ -102,7 +102,7 @@ public class QueueVector implements Queue {
 		if (isFull())
 			throw new AssertionError();
 		
-		// If we are here, we are sure that there will be a free slot.
+		// If we are here, we are sure that there will be at least an empty slot.
 		int position = find(State.EMPTY);
 		
 		// Unuseful statement.
@@ -116,7 +116,7 @@ public class QueueVector implements Queue {
 		// We write in that position our element.
 		data[position] = elem;
 		
-		// We modify the state of the slot in which we writed.
+		// We modify the state of the slot in which we writed an element.
 		vector[position] = State.FULL;
 
 		// Increment the count of elems in the queue.
@@ -128,20 +128,34 @@ public class QueueVector implements Queue {
 
 	@Override
 	public int retrieve() {
+		// If we are here, but the queue is empty, the wrapper is not doing well its job.
 		if (isEmpty())
 			throw new AssertionError();
 		
+		// If we are here, we are sure that there will be at least a full slot.
 		int position = find(State.FULL);
 
+		// Unuseful statement.
+		// While we're inside this block, thanks to the wrapper,
+		// all the code will be executed in mutual exclusion, 
+		// so there is no need to modify the state position 
+		// found beforehand with 'find()' into USING.
+		//
+		// vector[position] = State.USING;
+		
+		// We retrieve the element in that position.
 		int elem = data[position];
 		
+		// We modify the state of the slot from which we got an element.
 		vector[position] = State.EMPTY;
 
+		// Decrement the count of elems in the queue.
 		count -= 1;
 
 		// Debug purpose
 		System.out.println("\t[C] Consumed " + elem + "; count elems: " + getCount());
 
+		// Return the element got from the queue.
 		return elem;
 	}
 	

@@ -17,7 +17,7 @@ public class TestMain {
 		// so:
 		// 	- any Object that implements Queue interface,
 		//  - any Wrapper that implements the Queue Decorator Paradigm.
-		Queue q = new QueueWrapperSem( new QueueVector(5) );
+		Queue q = new QueueWrapperLock( new QueueVector(5) );
 		
 		// Instantiate and start all the NUM_THREAD threads, using the following rule:
 		// 		- even i) Consumer threads
