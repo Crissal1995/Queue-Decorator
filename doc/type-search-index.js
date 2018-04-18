@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"queue.wrapper","l":"QueueWrapperSync"}]
