@@ -1,7 +1,7 @@
 package test;
 import queue.*;
 import queue.implementation.*;
-import queue.wrapper.QueueWrapperLimit;
+import queue.wrapper.*;
 
 public class TestMain {
 	public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class TestMain {
 		// so:
 		// 	- any Object that implements Queue interface,
 		//  - any Wrapper that implements the Queue Decorator Paradigm.
-		Queue q = new QueueWrapperLimit( new QueueObject(5), 10 );
+		Queue q = new QueueWrapperSem( new QueueVector(5) );
 		
 		// Instantiate and start all the NUM_THREAD threads, using the following rule:
 		// 		- even i) Consumer threads
@@ -35,10 +35,7 @@ public class TestMain {
 		// Join all the NUM_THREAD threads.
 		for(int i = 0; i < NUM_THREAD; ++i) {
 			try {
-				// Because we can modify the logic of the producer-consumer problem
-				// due to limiting the access to the waiting set, we use a join with
-				// a timeout of 1000 ms to force quit threads.
-				pool[i].join(1000);
+				pool[i].join();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

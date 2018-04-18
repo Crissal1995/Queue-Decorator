@@ -6,22 +6,37 @@ import queue.Queue;
  * Actual implementation of Queue interface. It's usable as is, but it's not
  * recommended to use in a multi-threading application, because it doesn't
  * support mutual exclusion and concurrency.
- * <p>
- * For this reason, use it ALWAYS with a {@link queue.wrapper.QueueWrapper} 
- * (respecting the Decorator Paradigm) if you have a multi-thread application;
- * for a single-thread application, however, there are no concurrency and
- * mutual exclusion to respect and preserve, so there isn't the need of a Wrapper.
+ * For this reason, use it <b>always</b> with a {@link queue.wrapper.QueueWrapper} 
+ * (respecting the Decorator Paradigm) if you have a multi-thread application.
+ * <p> For a single-thread application, however, there are no concurrency and
+ * mutual exclusion to respect and preserve, so there isn't the need of any Wrapper.
+ * <p><b>Implementation</b>
+ * <p>This Queue is implemented with the use of two pointers; one points to
+ * the oldest element in the queue, while the other points to the newest element.
+ * Furthermore, the usage of this two pointers follows the FIFO policy, so the 
+ * first element inserted in the queue will be also the first to be discarted.
  * 
  * @author Cristiano Salerno
  */
-public class QueueObject implements Queue {
+public class QueuePointers implements Queue {
+	
+	// The actual content of the queue.
 	private int[] data;
+	
+	// The max number of elements the queue can hold.
 	private int maxElem;
-	private int oldPtr;
-	private int newPtr;
+	
+	// The number of how many elements are in the queue.
 	private int count;
+	
+	// The pointer to the oldest element in the queue.
+	// Will be the first to be extracted, using a FIFO policy.
+	private int oldPtr;
+	
+	// The pointer to the newest element in the queue.
+	private int newPtr;
 
-	public QueueObject(int size) {
+	public QueuePointers(int size) {
 		if (size <= 0) {
 			throw new IllegalArgumentException("Cannot create a " 
 					+ "queue with a number negative or zero of elements");

@@ -13,16 +13,22 @@ public class WorkerThread extends Thread {
 	public void run() {
 		
 		if(isConsumer) {
+			try {
+				Thread.sleep( 1000 );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 			queue.retrieve();
 		} else {
+			try {
+				Thread.sleep( 500 );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 			int elem = (int)(Math.random() * 100);
 			queue.insert(elem);
-		}
-		
-		try {
-			Thread.sleep( 2000 );
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 }

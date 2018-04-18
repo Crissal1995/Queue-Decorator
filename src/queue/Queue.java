@@ -14,30 +14,30 @@ public interface Queue {
 	/**
 	 * Determine if there are no elements in the queue.
 	 * 
-	 * @return A boolean, indicating if there are no elements in the queue (true),
-	 * or there is at least one element (false).
+	 * @return {@code true} if there isn't any element in the queue,
+	 * {@code false} otherwise.
 	 */
 	public boolean isEmpty();
 	
 	/**
 	 * Determine if there are as many elements as the queue's size.
 	 * 
-	 @return A boolean, indicating if there are as many elements as the queue size (true),
-	 * or it there is at least one free spot (false).
+	 * @return {@code true} if the queue is full,
+	 * {@code false} otherwise.
 	 */
 	public boolean isFull();
 	
 	/**
 	 * Return the size (not the elements' count) of the queue.
 	 * 
-	 * @return An int, indicating how many elements the queue can contain.
+	 * @return A number, indicating how many elements the queue can contain.
 	 */
 	public int getSize();
 	
 	/**
 	 * Return the elements' count of the queue.
 	 * 
-	 * @return An int, indicating how many elements are in the queue. 
+	 * @return A number, indicating how many elements are in the queue. 
 	 */
 	public int getCount();
 	

@@ -13,10 +13,19 @@ import queue.Queue;
  */
 public abstract class QueueWrapper implements Queue {
 	
+	/**
+	 * The Queue object that will be passed to instance of QueueWrapper descendants.
+	 */
 	protected Queue queue;
 	
-	public QueueWrapper(Queue q) {
-		queue = q;
+	/**
+	 * Wrap the argument Queue object, in order to prevent deadlocks and interferences between tasks
+	 * that are currently working with the queue.
+	 * 
+	 * @param queue The Queue object to wrap.
+	 */
+	public QueueWrapper(Queue queue) {
+		this.queue = queue;
 	}
 	
 	public boolean isEmpty() {
